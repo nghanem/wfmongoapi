@@ -249,8 +249,6 @@ var workflowSchema  = mongoose.Schema(
 var connectToMongo = function(req, res, query1, query2) {
     var url_path = req.body.url_path;
     var collection = req.body.collection_name;
-    console.log(url_path);
-    console.log(collection);
 
 
     if (url_path== null || url_path.length == 0){
@@ -288,8 +286,6 @@ var connectToMongo = function(req, res, query1, query2) {
 var connectToMongoOne = function(req, res, query) {
     var url_path = req.body.url_path;
     var collection = req.body.collection_name;
-    console.log(url_path);
-    console.log(collection);
 
     if (url_path == null || url_path.length == 0){
         throw "url_path is empty";
@@ -330,6 +326,7 @@ router.get("/",function(req,res){
 
 router.route("/workflow/workflows")
     .post(function(req,res){
+        console.log("/workflow/workflows");
         var query1 = {};
         var query2 = {"workflow_id":1,"app_name":1, "workflow_requester": 1, "_id":0};
 
@@ -338,6 +335,7 @@ router.route("/workflow/workflows")
 
 router.route("/workflow/appsnames")
     .post(function(req,res){
+        console.log("/workflow/appsnames");
         var query1 = {};
         var query2 = {"app_name":1, "_id":0};
 
@@ -346,6 +344,7 @@ router.route("/workflow/appsnames")
 
 router.route("/workflow/:id/completed")
     .post(function(req,res){
+        console.log("/workflow/"+req.params.id+"/completed");
         var query1 = {"workflow_id":req.params.id};
         var query2 ={"app_name":1, "_id":0 ,"master.workflow_completed": 1, "service_account.workflow_completed":1 , "apigee.workflow_completed":1 ,"pcf.workflow_completed":1};
 
@@ -354,13 +353,14 @@ router.route("/workflow/:id/completed")
 
 router.route("/workflow/workflowid/:id")
     .post(function(req,res){
-
+        console.log("/workflow/workflowid/"+req.params.id);
         var query = { "workflow_id" : req.params.id};
         connectToMongoOne(req,res, query);
     });
 
 router.route("/workflow/appname/:id")
     .post(function(req,res){
+        console.log("/workflow/appname/"+req.params.id);
         var query = { "app_name" : req.params.id};
 
         connectToMongoOne(req,res, query);
