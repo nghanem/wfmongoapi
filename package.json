@@ -1,0 +1,19 @@
+{
+  "name": "MongoAPI",
+  "version": "1.0.0",
+  "description": "Node.js and MongoDb API.",
+  "main": "Server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Node.js",
+    "mongoDb"
+  ],
+  "author": "Nabeeh Ghanem",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.2"
+  }
+}
